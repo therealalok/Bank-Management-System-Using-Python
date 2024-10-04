@@ -1,0 +1,53 @@
+class Bank_account:
+    def __init__(self, ac_number, name, balance):
+        self.ac_number = ac_number
+        self.name = name
+        self.balance = balance
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.balance += amount
+            print(f"Rs.{amount} has been successfully deposited. Total amount is updated to Rs.{self.balance}.")
+        else:
+            print(f"Rs.{amount} is not a valid amount.")
+
+    def withdraw(self, amount):
+        if amount > 0:
+            if amount <= self.balance:
+                self.balance -= amount
+                print(f"Rs.{amount} has been successfully withdrawn. Total amount is updated to Rs.{self.balance}.")
+            else:
+                print("Insufficient balance!")
+        else:
+            print(f"Rs.{amount} is not a valid amount.")
+
+    def view(self):
+        print(f"The account number is {self.ac_number}.")
+        print(f"The name of the account holder is {self.name}.")
+        print(f"The total balance available is Rs.{self.balance}.")
+
+account = Bank_account(786994, "Lokmani Subedi", 759035)
+
+def menu():
+    print("\n--- Bank Management System ---")
+    print("1. View Account Details")
+    print("2. Deposit Money")
+    print("3. Withdraw Money")
+    print("4. Exit")
+
+while True:
+    menu()
+    choice = input("Enter your choice(1/2/3/4): ")
+    if choice == '1':
+        account.view()
+    elif choice == '2':
+        amount = float(input("Enter amount to deposit: "))
+        account.deposit(amount)
+    elif choice == '3':
+        amount = float(input("Enter amount to withdraw: "))
+        account.withdraw(amount)
+    elif choice == '4':
+        print("Closing the system............")
+        break
+    else:
+        print("Invalid option! Please try again.")
